@@ -9,7 +9,7 @@ import { setItem } from "../../utils/storage";
 import userImg from "../../assets/user.svg";
 
 const Login = () => {
-  const navigagte = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [stayConnected, setStayConnected] = useState(false);
@@ -29,7 +29,7 @@ const Login = () => {
 
       toastfy("success", "Bem vindo!", "text-purple", 3000);
       setTimeout(() => {
-        navigagte("/home");
+        navigate("/home");
       }, 4000);
 
       let photo = login.data.user.photo;
@@ -38,14 +38,8 @@ const Login = () => {
         photo = userImg;
       }
 
-      if (stayConnected) {
-        setItem("id", login.data.user.id, true);
-        setItem("name", login.data.user.name, true);
-        setItem("photo", photo, true);
-        return setItem("token", login.data.token, true);
-      }
       setItem("id", login.data.user.id);
-      setItem("name", login.data.name);
+      setItem("name", login.data.user.name);
       setItem("photo", photo);
       setItem("token", login.data.token);
     } catch (error: any) {

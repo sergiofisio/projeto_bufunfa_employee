@@ -5,21 +5,22 @@ import plus from "../../assets/icons/plus.svg";
 import { useNavigate } from "react-router-dom";
 import { setItem } from "../../utils/storage";
 
-export default function Home({ setCompany }: { setCompany?: any }) {
+export default function Home() {
   const navigate = useNavigate();
   const [companiesList, setCompaniesList] = useState([]);
 
   async function getUserInfo() {
     const {
       data: {
-        ceo: { companies },
+        employee: { companies },
       },
-    } = await AxiosInstance.axiosPrivate.get("/userInfo/ceo", {
+    } = await AxiosInstance.axiosPrivate.get("/userInfo/employee", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-
+    console.log("teste2");
+    console.log(companies);
     setCompaniesList(companies);
   }
 
@@ -28,12 +29,12 @@ export default function Home({ setCompany }: { setCompany?: any }) {
   }, []);
 
   return (
-    <div className="w-full h-full bg-white">
-      <div className="flex items-center justify-center w-full h-32 rounded-b-3xl bg-purpleDark">
+    <div className="w-full h-[90%] bg-gradient-to-t from-purpleDark from-1% via-white via-10% to-white to-90%">
+      <div className="flex items-center justify-center w-full h-32 rounded-b-3xl bg-purpleDark ">
         <h2 className="text-title text-white">
           Olá,
           <span className="text-gold">
-            {` ${localStorage.getItem("name")?.split(" ")[0] || "Sergio"}`}
+            {` ${sessionStorage.getItem("name")?.split(" ")[0] || ""}`}
           </span>
           !
         </h2>
@@ -49,8 +50,7 @@ export default function Home({ setCompany }: { setCompany?: any }) {
                     key={key}
                     onClick={() => {
                       navigate("/info");
-                      setCompany(company);
-                      setItem("company", company.id, true);
+                      setItem("company", company.id);
                     }}
                   >
                     <Company company={company} classNameH2={true} />
@@ -58,18 +58,6 @@ export default function Home({ setCompany }: { setCompany?: any }) {
                 );
               })
             : ""}
-          <div
-            onClick={() => {
-              navigate("/newCompany");
-            }}
-            className="w-40 h-40 flex flex-wrap rounded-3xl cursor-pointer"
-          >
-            <Company
-              classname="bg-purpleDark p-5"
-              img={plus}
-              name="Criar empresa"
-            />
-          </div>
         </div>
       </div>
     </div>
