@@ -8,6 +8,7 @@ import { setItem } from "../../utils/storage";
 export default function Home() {
   const navigate = useNavigate();
   const [companiesList, setCompaniesList] = useState([]);
+  const [userName, setUserName] = useState("");
 
   async function getUserInfo() {
     const response = await AxiosInstance.axiosPrivate.get(
@@ -24,6 +25,7 @@ export default function Home() {
   }
 
   useEffect(() => {
+    console.log(localStorage.getItem("name"));
     getUserInfo();
   }, []);
 
@@ -33,7 +35,7 @@ export default function Home() {
         <h2 className="text-title text-white">
           Olá,
           <span className="text-gold">
-            {` ${sessionStorage.getItem("name")?.split(" ")[0] || ""}`}
+            {` ${localStorage.getItem("name")?.split(" ")[0] || ""}`}
           </span>
           !
         </h2>
