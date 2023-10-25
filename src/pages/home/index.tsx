@@ -10,18 +10,17 @@ export default function Home() {
   const [companiesList, setCompaniesList] = useState([]);
 
   async function getUserInfo() {
-    const {
-      data: {
-        employee: { companies },
-      },
-    } = await AxiosInstance.axiosPrivate.get("/userInfo/employee", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    console.log("teste2");
-    console.log(companies);
-    setCompaniesList(companies);
+    const response = await AxiosInstance.axiosPrivate.get(
+      "/userInfo/employee",
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    console.log(response);
+    //console.log(companies);
+    setCompaniesList(response.data.employee.company);
   }
 
   useEffect(() => {
