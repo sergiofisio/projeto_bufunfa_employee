@@ -19,8 +19,7 @@ export default function Home() {
         },
       }
     );
-    console.log(response);
-    //console.log(companies);
+
     setCompaniesList(response.data.employee.company);
   }
 
