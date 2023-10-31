@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import RecoveryPassword from "./pages/RecoveryPassword";
 import Home from "./pages/home";
+import Company from "./pages/Company/Company";
 
 const MainRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const MainRoutes = () => {
       <Route path="/home" element={<Home />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/recoverypassword" element={<RecoveryPassword />} />
+      <Route path="/info" element={<Company />} />
     </Routes>
   );
 };
