@@ -4,7 +4,7 @@ import plus from "../../assets/icons/plus.svg";
 import { HeaderCompany } from "../header/header";
 import { useEffect, useState } from "react";
 import ExpensesFunctions from "../expense/expenses.functions";
-import ExpenseInfo from "../../components/expense/expense";
+import ExpenseInfo from "../expense/expense";
 import ShopItemInfo from "../expense/shop";
 import ModalDeleteExpense from "../expense/modal.delete.expense";
 
@@ -53,7 +53,9 @@ export default function ExpenseCompany({
               }}
               className="text-subTitle2"
             >
-              Novo gasto obrigatório
+              {type === "required"
+                ? "Novo gasto obrigatório"
+                : "Novo produto/serviço"}
             </h2>
           </div>
         </div>

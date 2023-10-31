@@ -38,7 +38,7 @@ const Signup = () => {
         throw new Error("As senhas não coincidem!");
       }
 
-      await axiosInstance.axiosPrivate.post("/register/employee", {
+      await axiosInstance.axiosPrivate.post("/register/ceo", {
         name,
         email,
         cpf: cpfFormated,
@@ -58,14 +58,14 @@ const Signup = () => {
     }
   };
   return (
-    <div className="w-full h-full  flex flex-col justify-evenly bg-purple">
+    <div className="w-full h-[90%]  flex flex-col justify-evenly bg-purpleDark">
       <DefaultHeader />
       <div className="w-full flex flex-col">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col justify-evenly items-center gap-6 px-8"
         >
-          <div className="w-full max-h-[320px] flex flex-col gap-8 overflow-auto">
+          <div className="w-full max-h-80 flex flex-col gap-8 overflow-scroll scrollbar-thin scrollbar-thumb-white">
             <Input
               set={setName}
               value={name}

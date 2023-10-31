@@ -28,7 +28,7 @@ const RecoveryPassword = () => {
   };
 
   return (
-    <div className="w-full min-h-full  flex flex-col items-center justify-evenly bg-purple">
+    <div className="w-full min-h-full  flex flex-col items-center justify-evenly bg-purpleDark">
       <DefaultHeader />
       <div className="flex relative justify-center">
         <img
