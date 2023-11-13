@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import AxiosInstance from "./connection";
 import { toastfy } from "./hooks/toasfy";
 import { PulseLoader } from "react-spinners";
-import Company from "./pages/company/company";
+import Company from "../src/pages/company/company";
 
 function UserLogged({ redirectTo }: { redirectTo: string }) {
   const navigate = useNavigate();
