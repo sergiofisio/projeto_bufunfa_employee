@@ -16,7 +16,6 @@ export default function Button({
   color: string;
   img?: boolean | string;
 }) {
-  const [hover, onHover] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Add a new state for loading
 
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -40,12 +39,6 @@ export default function Button({
         } rounded-3xl border-2 `}
         type={type ? type : "button"}
         onClick={handleClick} // Use the new handleClick function
-        onMouseEnter={() => {
-          onHover(true);
-        }}
-        onMouseLeave={() => {
-          onHover(false);
-        }}
         disabled={isLoading}
       >
         {isLoading ? (
