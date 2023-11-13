@@ -1,5 +1,5 @@
 import { Navigate, Outlet, Route, Routes, useNavigate } from "react-router-dom";
-import App from "./App";
+import App from "./App.tsx";
 import Home from "./pages/home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import AxiosInstance from "./connection";
 import { toastfy } from "./hooks/toasfy";
 import { PulseLoader } from "react-spinners";
-import Company from "../src/pages/company/company";
+import Company from "./pages/company";
 
 function UserLogged({ redirectTo }: { redirectTo: string }) {
   const navigate = useNavigate();

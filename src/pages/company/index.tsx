@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { MenuBar } from "../../components/menuBar/menuBar";
-import CompanyInfo from "../../components/company/company.info";
-import EmployeesShow from "../../components/employees/employees.show";
-import CompanyTasks from "../../components/company/company.tasks";
-import ExpenseCompany from "../../components/company/company.expense";
+import { MenuBar } from "../../components/menuBar/menuBar.tsx";
+import CompanyInfo from "../../components/company/company.info.tsx";
+import EmployeesShow from "../../components/employees/employees.show.tsx";
+import CompanyTasks from "../../components/company/company.tasks.tsx";
+import ExpenseCompany from "../../components/company/company.expense.tsx";
 export default function Company() {
   const [selected, setSelected] = useState("home");
   const [companyFunctions, setCompanyFunctions] = useState({
