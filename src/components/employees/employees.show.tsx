@@ -1,14 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AxiosInstance from "../../connection";
 
 export default function EmployeesShow() {
-
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    email: "",
-    cpf:'',
-    photo: ""
-  })
   async function getUserInfo() {
     try {
       const {

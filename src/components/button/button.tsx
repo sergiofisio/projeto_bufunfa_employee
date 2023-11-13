@@ -1,5 +1,4 @@
 import imgGearGold from "./../../assets/icons/gearOrange.svg";
-import imgGearWhite from "./../../assets/icons/gearWhite.svg";
 import imgGearPurple from "./../../assets/icons/gearPurple.svg";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";

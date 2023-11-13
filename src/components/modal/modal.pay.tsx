@@ -20,7 +20,7 @@ export default function ModalPay({
       ) {
         throw new Error("Você não tem saldo suficiente!!");
       }
-      const { data } = await AxiosInstance.axiosPrivate.put(
+      await AxiosInstance.axiosPrivate.put(
         `/employeePayExpense/employee/${id.id}/${await getItem("id")}`,
         { statusExpenseId: 2 },
         {
