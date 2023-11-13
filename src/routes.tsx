@@ -1,13 +1,11 @@
 import { Navigate, Outlet, Route, Routes, useNavigate } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/home";
-import CompanyCreate from "./components/company/company.create";
 import Login from "./pages/Login";
 import Company from "./pages/company/company";
 import Signup from "./pages/Signup";
 import RecoveryPassword from "./pages/RecoveryPassword";
 import ChangePassword from "./pages/ChangePassword";
-import CompanyEdit from "./components/company/company.edit";
 import Expense from "./components/company/company.expense";
 import { clear, getItem } from "./utils/storage";
 import { useEffect, useState } from "react";
@@ -23,7 +21,7 @@ function UserLogged({ redirectTo }: { redirectTo: string }) {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        await AxiosInstance.axiosPrivate.get("/verifyToken/ceo", {
+        await AxiosInstance.axiosPrivate.get("/verifyToken/employee", {
           headers: {
             Authorization: `Bearer ${await getItem("token")}`,
           },
@@ -135,9 +133,7 @@ export default function MainRoutes() {
       </Route>
       <Route element={<ProtectRoute redirectTo="/" />}>
         <Route path="/home" element={<Home init={init} />} />
-        <Route path="/newCompany" element={<CompanyCreate />} />
         <Route path="/info" element={<Company />} />
-        <Route path="/editCompany" element={<CompanyEdit />} />
         <Route path="/required" element={<Expense />} />
         <Route path="/shop" element={<Expense />} />
       </Route>

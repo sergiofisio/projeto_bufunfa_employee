@@ -33,7 +33,7 @@ export default function Input({
       <label className={`text-textBody text-black ${labelClassName}`}>
         {label}
       </label>
-      <div className="border-2 border-solid border-black rounded-3xl bg-white text-black resize-none outline-none p-2 overflow-auto flex">
+      <div className="border-2 border-solid border-purple rounded-3xl bg-white text-black resize-none outline-none p-2 overflow-auto flex">
         {type === "textarea" ? (
           <textarea
             className=" bg-white outline-none w-full h-full text-black px-2"

@@ -3,7 +3,7 @@ import "./index.css";
 
 import logo from "./assets/logo.svg";
 import img1 from "./assets/imgWhat.svg";
-import imgCeo from "./assets/imgCeo.svg";
+import imgEmployee from "./assets/imgEmployee.svg";
 import arrow from "./assets/arrow.svg";
 import iconStepActive from "./assets/stepActive.svg";
 import iconStepInactive from "./assets/stepInactive.svg";
@@ -22,7 +22,7 @@ function App() {
 
     if (arrow === "right" && step === 2) {
       setStep(Number(step) + 1);
-      return setImgInfo(imgCeo);
+      return setImgInfo(imgEmployee);
     }
     if (arrow === "left" && step === 3) {
       setStep(Number(step) - 1);
@@ -40,7 +40,7 @@ function App() {
     <div className="w-full h-[90%] bg-transparent flex items-center justify-center">
       <div
         className={`w-full h-full p-4 transition-all duration-500 ${
-          step === 1 ? "bg-purpleDark" : "bg-white"
+          step === 1 ? "bg-purple" : "bg-white"
         } flex flex-col items-center justify-evenly gap-12`}
       >
         {step === 1 ? (
@@ -66,7 +66,7 @@ function App() {
               }
               `}
             >
-              {step === 2 ? "O que é?" : "CEO"}
+              {step === 2 ? "O que é?" : "Funcionário"}
             </h2>{" "}
             <p
               className={`text-textBody2 text-center p-7 w-full h-40 ${
@@ -75,7 +75,7 @@ function App() {
             >
               {step === 2
                 ? "O Bufunfa é um aplicativo que ajuda jovens a entender, na prática, como administrar as suas decisões financeiras através de uma empresa virtual fictícia, que demonstra como são as responsabilidades da vida financeira adulta."
-                : "A conta CEO é utilizada por professores, instituições, ou responsáveis que administram a empresa virtual, contratando funcionários, estabelecendo um salário, gerando pagamentos mensais e tarefas a serem cumpridas pelos funcionários."}
+                : " A conta Funcionário é utilizada por jovens que desejam aprender a administrar seu dinheiro, podendo participar de um empresa criada por um CEO, receber mesadas, realizar tarefas e utilizar seu dinheiro para comprar coisas oferecidas pelo CEO."}
             </p>
             <div
               className={`flex justify-between w-full transition-all duration-500 ${

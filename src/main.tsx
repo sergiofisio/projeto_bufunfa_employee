@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
-    <div className="w-screen h-screen bg-purpleDark">
+    <div className="w-screen h-screen bg-purple">
       <BrowserRouter>
         <MainRoutes />
       </BrowserRouter>

@@ -14,18 +14,19 @@ export default function Company() {
     loans: [],
     notify: [],
   });
+  const [loading, setLoading] = useState(false);
 
   return (
-    <div className="w-full h-[90%] bg-gradient-to-t from-purpleDark from-1% via-white via-10% to-white to-90% flex flex-col justify-between relative border-none">
+    <div className="w-full h-[90%] bg-gradient-to-t from-purple from-1% via-white via-10% to-white to-90% flex flex-col justify-between relative border-none">
       {selected === "home" && (
         <CompanyInfo
           companyFunctions={companyFunctions}
           setCompanyFunctions={setCompanyFunctions}
+          setLoading={setLoading}
+          loading={loading}
         />
       )}
-      {selected === "people" && (
-        <EmployeesShow employees={companyFunctions.employees} />
-      )}
+      {selected === "people" && <EmployeesShow />}
       {selected === "tasks" && <CompanyTasks tasks={companyFunctions.tasks} />}
       {selected === "money" && (
         <ExpenseCompany type="required" expenses={companyFunctions.expenses} />
@@ -33,7 +34,11 @@ export default function Company() {
       {selected === "cart" && (
         <ExpenseCompany type="shop" expenses={companyFunctions.expenses} />
       )}
-      <MenuBar selected={selected} setSelected={setSelected} />
+      <MenuBar
+        selected={selected}
+        setSelected={setSelected}
+        loading={loading}
+      />
     </div>
   );
 }

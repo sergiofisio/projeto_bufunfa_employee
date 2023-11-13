@@ -13,7 +13,7 @@ export default function CompanyPerson({
   return (
     <div
       key={id}
-      className="w-28 h-36 bg-purpleDark relative flex flex-col items-center justify-between p-2 rounded-xl"
+      className="w-28 h-36 bg-purple relative flex flex-col items-center justify-between p-2 rounded-xl"
     >
       {type === "ceo" ? (
         <img className="absolute top-1 right-1 " src={iconCeo} alt="" />

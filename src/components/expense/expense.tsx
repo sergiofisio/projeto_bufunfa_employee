@@ -1,5 +1,5 @@
 import coinIcon from "../../assets/icons/coin.svg";
-import gearWhite from "../../assets/icons/gearWhite.svg";
+import Button from "../button/button";
 
 export default function ExpenseInfo({
   classname,
@@ -9,7 +9,7 @@ export default function ExpenseInfo({
   date,
   value,
   setShowModal,
-  setShowModalDelete,
+  statusExpenseId,
 }: {
   classname?: string;
   id?: number;
@@ -18,7 +18,7 @@ export default function ExpenseInfo({
   date: string;
   value?: number;
   setShowModal?: any;
-  setShowModalDelete?: any;
+  statusExpenseId: number;
 }) {
   function formatDate(date: string) {
     const today = new Date();
@@ -34,7 +34,9 @@ export default function ExpenseInfo({
     });
   }
   return (
-    <div className={`flex justify-between w-full h-28 ${classname} px-4 py-2`}>
+    <div
+      className={`flex flex-col justify-between w-full h-28 ${classname} px-4 py-2`}
+    >
       <div className=" flex flex-col justify-evenly h-full w-full">
         <h2 className="text-subTitle2 text-purple">{title}</h2>
         <p className="text-textBody2">{description}</p>
@@ -53,18 +55,18 @@ export default function ExpenseInfo({
         </div>
       </div>
       <div className="flex flex-col h-full justify-around">
-        <img
-          onClick={() => setShowModal(id)}
-          className="w-8 h-8 p-1 bg-purpleDark rounded-[100%]"
-          src={gearWhite}
-          alt="icon edit"
-        />
-        <h2
-          onClick={() => setShowModalDelete(id)}
-          className="w-8 h-8 p-1 bg-purpleDark rounded-[100%] text-white flex items-center justify-center"
-        >
-          X
-        </h2>
+        {statusExpenseId === 1 ? (
+          <Button
+            text="Pagar"
+            onClick={() => {
+              setShowModal({ id, value });
+            }}
+            type="button"
+            color="purple"
+          />
+        ) : (
+          <h2 className="text-subTitle2 text-gold">Pago</h2>
+        )}
       </div>
     </div>
   );

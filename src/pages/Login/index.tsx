@@ -24,7 +24,7 @@ const Login = ({ init }: { init: boolean }) => {
       if (!email || !password) {
         throw new Error("Preencha todos os campos!");
       }
-      const login = await AxiosInstance.axiosPrivate.post("/login/ceo", {
+      const login = await AxiosInstance.axiosPrivate.post("/login/employee", {
         email,
         password,
       });
@@ -40,6 +40,8 @@ const Login = ({ init }: { init: boolean }) => {
         photo = userImg;
       }
 
+      console.log(login.data.user);
+
       setItem("id", login.data.user.id);
       setItem("name", login.data.user.name);
       setItem("photo", photo);
@@ -54,7 +56,7 @@ const Login = ({ init }: { init: boolean }) => {
 
   return (
     <div
-      className={`w-full h-[90%] flex flex-col justify-evenly items-center bg-purpleDark`}
+      className={`w-full h-[90%] flex flex-col justify-evenly items-center bg-purple`}
     >
       {!init ? (
         <>

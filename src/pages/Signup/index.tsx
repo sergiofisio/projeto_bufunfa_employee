@@ -38,7 +38,7 @@ const Signup = () => {
         throw new Error("As senhas não coincidem!");
       }
 
-      await axiosInstance.axiosPrivate.post("/register/ceo", {
+      await axiosInstance.axiosPrivate.post("/register/employee", {
         name,
         email,
         cpf: cpfFormated,

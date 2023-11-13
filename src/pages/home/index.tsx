@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import AxiosInstance from "../../connection";
 import Company from "../../components/company/company";
-import plus from "../../assets/icons/plus.svg";
 import { useNavigate } from "react-router-dom";
 import { clear, setItem } from "../../utils/storage";
 import logout from "../../assets/icons/logout.svg";
@@ -13,28 +12,22 @@ import ModalEditUser from "../../components/modal/modal.edit.user";
 export default function Home({ init }: { init: boolean }) {
   const navigate = useNavigate();
   const [companiesList, setCompaniesList] = useState([]);
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    email: "",
-    cpf: "",
-    password: "" || null,
-    photo: "",
-  });
+  const [userInfo, setUserInfo] = useState<any>([]);
   const [modalEdit, setModalEdit] = useState(false);
 
   async function getUserInfo() {
     const {
-      data: {
-        ceo: { cpf, email, name, photo, companies },
-      },
-    } = await AxiosInstance.axiosPrivate.get("/userInfo/ceo", {
+      data: { employee },
+    } = await AxiosInstance.axiosPrivate.get("/userInfo/employee", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    setUserInfo({ name, email, cpf, photo, password: null });
-    if (photo) setItem("photo", photo);
-    setCompaniesList(companies);
+
+    setUserInfo(employee);
+
+    if (employee.photo) setItem("photo", employee.photo);
+    setCompaniesList(employee.company);
   }
 
   async function handleLogout(e: any) {
@@ -49,11 +42,11 @@ export default function Home({ init }: { init: boolean }) {
 
   useEffect(() => {
     if (init) getUserInfo();
-  }, [init, modalEdit]);
+  }, [init]);
 
   return (
-    <div className="w-full min-h-[90%] bg-gradient-to-t from-purpleDark from-1% via-white via-10% to-white to-90% flex flex-col items-center">
-      <div className="flex items-center justify-center w-full h-32 rounded-b-3xl bg-purpleDark relative">
+    <div className="w-full min-h-[90%] bg-gradient-to-t from-purple from-1% via-white via-10% to-white to-90% flex flex-col items-center">
+      <div className="flex items-center justify-center w-full h-32 rounded-b-3xl bg-purple relative">
         <h2 className="text-title text-white">
           Olá,
           <span className="text-gold">
@@ -78,16 +71,16 @@ export default function Home({ init }: { init: boolean }) {
           </div>
         </div>
       </div>
-      {!init || companiesList.length <= 0 ? (
+      {!init ? (
         <div className="w-full min-h-full flex flex-col items-center justify-center">
           <PulseLoader color="#240046" />
-          <h2 className="text-purpleDark text-subTitle">Carregando</h2>
+          <h2 className="text-purple text-subTitle">Carregando</h2>
         </div>
       ) : (
         <div className="w-full bg-white pt-7 h-full">
           <h1 className="w-full text-2xl text-center">Selecione uma empresa</h1>
-          <div className="flex flex-wrap justify-around py-4 gap-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-purpleDark w-full max-h-[calc(100vh-12rem)]">
-            {companiesList.length
+          <div className="flex flex-wrap justify-around py-4 gap-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-purple w-full max-h-[calc(100vh-12rem)]">
+            {companiesList
               ? companiesList.map(({ company }: any, key) => {
                   return (
                     <div
@@ -103,18 +96,6 @@ export default function Home({ init }: { init: boolean }) {
                   );
                 })
               : ""}
-            <div
-              onClick={() => {
-                navigate("/newCompany");
-              }}
-              className="w-40 h-40 flex flex-wrap rounded-3xl cursor-pointer"
-            >
-              <Company
-                classname="bg-purpleDark p-5"
-                img={plus}
-                name="Criar empresa"
-              />
-            </div>
           </div>
         </div>
       )}

@@ -8,45 +8,54 @@ import tasks from "../../assets/icons/task.svg";
 import tasksActive from "../../assets/icons/taskActive.svg";
 import home from "../../assets/icons/home.svg";
 import homeActive from "../../assets/icons/homeActive.svg";
+import { ClipLoader } from "react-spinners";
 
 export function MenuBar({
   selected,
   setSelected,
+  loading,
 }: {
   selected?: string;
   setSelected?: any;
+  loading?: any;
 }) {
   return (
-    <div className="w-full flex items-center justify-around gap-4 rounded-t-[11px] bg-purpleDark text-white border-transparent border-none">
-      <img
-        onClick={() => setSelected("people")}
-        className="w-[24px]"
-        src={selected === "people" ? peopleActive : people}
-      />
-      <img
-        onClick={() => setSelected("money")}
-        className="w-[24px]"
-        src={selected === "money" ? moneyActive : money}
-      />
-      <div
-        onClick={() => setSelected("home")}
-        className="border-[7px] p-[5px] rounded-full"
-      >
-        <img
-          className="w-[24px]"
-          src={selected === "home" ? homeActive : home}
-        />
-      </div>
-      <img
-        onClick={() => setSelected("cart")}
-        className="w-[24px]"
-        src={selected === "cart" ? cartActive : cart}
-      />
-      <img
-        onClick={() => setSelected("tasks")}
-        className="w-[24px]"
-        src={selected === "tasks" ? tasksActive : tasks}
-      />
+    <div className="w-full flex items-center justify-around gap-4 rounded-t-[11px] bg-purple text-white border-transparent border-none">
+      {!loading ? (
+        <ClipLoader color="white" />
+      ) : (
+        <>
+          <img
+            onClick={() => setSelected("people")}
+            className="w-[24px]"
+            src={selected === "people" ? peopleActive : people}
+          />
+          <img
+            onClick={() => setSelected("money")}
+            className="w-[24px]"
+            src={selected === "money" ? moneyActive : money}
+          />
+          <div
+            onClick={() => setSelected("home")}
+            className="border-[7px] p-[5px] rounded-full"
+          >
+            <img
+              className="w-[24px]"
+              src={selected === "home" ? homeActive : home}
+            />
+          </div>
+          <img
+            onClick={() => setSelected("cart")}
+            className="w-[24px]"
+            src={selected === "cart" ? cartActive : cart}
+          />
+          <img
+            onClick={() => setSelected("tasks")}
+            className="w-[24px]"
+            src={selected === "tasks" ? tasksActive : tasks}
+          />
+        </>
+      )}
     </div>
   );
 }

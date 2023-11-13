@@ -2,6 +2,7 @@ import imgGearGold from "./../../assets/icons/gearOrange.svg";
 import imgGearWhite from "./../../assets/icons/gearWhite.svg";
 import imgGearPurple from "./../../assets/icons/gearPurple.svg";
 import { useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 export default function Button({
   text,
@@ -14,9 +15,18 @@ export default function Button({
   onClick?: (e?: any) => void;
   type?: "submit" | "reset" | "button";
   color: string;
-  img?: boolean;
+  img?: boolean | string;
 }) {
   const [hover, onHover] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Add a new state for loading
+
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    setIsLoading(true);
+    if (onClick) {
+      await onClick(e);
+    }
+    setIsLoading(false);
+  };
 
   return (
     <>
@@ -24,41 +34,39 @@ export default function Button({
         className={`flex items-center justify-evenly w-full h-10 transition-all duration-300 ease-in-out 
         ${
           color === "purple"
-            ? "bg-purpleDark text-gold border-gold hover:bg-gold hover:text-purpleDark"
+            ? "bg-purple text-goldDark border-goldDark"
             : color === "gold"
-            ? "bg-gold text-purpleDark border-goldDark hover:bg-transparent hover:text-goldDark"
-            : "bg-transparent text-purpleDark border-transparent hover:bg-purpleDark hover:text-white"
+            ? "bg-goldDark text-purple border-goldDark"
+            : "bg-transparent text-purple border-transparent"
         } rounded-3xl border-2 `}
         type={type ? type : "button"}
-        onClick={onClick}
+        onClick={handleClick} // Use the new handleClick function
         onMouseEnter={() => {
           onHover(true);
         }}
         onMouseLeave={() => {
           onHover(false);
         }}
+        disabled={isLoading}
       >
-        {text}
-        {img && !hover && (
+        {isLoading ? (
+          <ClipLoader
+            color={color === "purple" ? "#FF8500" : "#5A189A"}
+            loading={isLoading}
+          />
+        ) : (
+          text
+        )}{" "}
+        {img && (
           <img
             src={
-              color === "purple"
+              typeof img === "string"
+                ? img
+                : color === "purple"
                 ? imgGearGold
                 : color === "gold"
                 ? imgGearPurple
                 : imgGearPurple
-            }
-            alt="icon setting"
-          />
-        )}
-        {img && hover && (
-          <img
-            src={
-              color === "purple"
-                ? imgGearPurple
-                : color === "gold"
-                ? imgGearGold
-                : imgGearWhite
             }
             alt="icon setting"
           />

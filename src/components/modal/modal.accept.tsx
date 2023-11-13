@@ -66,7 +66,7 @@ export default function ModalAccept({
   }, [infoNotify]);
   return (
     <div className="absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
-      <div className="bg-purpleDark w-11/12 h-5/6 rounded-2xl relative flex flex-col justify-evenly px-6">
+      <div className="bg-purple w-11/12 h-5/6 rounded-2xl relative flex flex-col justify-evenly px-6">
         <h2
           onClick={() => setShowModal(false)}
           className="bg-gold rounded-[100%] absolute top-4 right-4 w-4 h-4 font-bold flex items-center justify-center"

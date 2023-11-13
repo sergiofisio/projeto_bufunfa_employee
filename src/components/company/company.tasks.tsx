@@ -10,6 +10,8 @@ import TaskDelete from "../task/task.delete";
 export default function CompanyTasks({ tasks }: { tasks: any }) {
   const [showModal, setShowModal] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState("");
+  console.log(tasks);
+
   return (
     <div className="w-full h-5/6">
       <HeaderCompany img={imgTask} text="Lista de tarefas" />

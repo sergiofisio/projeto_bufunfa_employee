@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AxiosInstance from "../../connection";
-import { getItem } from "../../utils/storage";
+import { getItem, setItem } from "../../utils/storage";
 import plusIcon from "../../assets/icons/plus.svg";
 import userImg from "../../assets/user.svg";
 import Input from "../input/input";
@@ -33,7 +33,7 @@ export default function ModalEditUser({
         data: {
           fileUpload: { Location },
         },
-      } = await AxiosInstance.axiosPrivate.post(`/upload/ceo`, formData, {
+      } = await AxiosInstance.axiosPrivate.post(`/upload/employee`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
@@ -60,12 +60,14 @@ export default function ModalEditUser({
 
       const {
         data: { mensagem },
-      } = await AxiosInstance.axiosPrivate.put("/updateUser/ceo", data, {
+      } = await AxiosInstance.axiosPrivate.put("/updateUser/employee", data, {
         headers: {
           Authorization: `Bearer ${await getItem("token")}`,
         },
       });
       toastfy("success", mensagem, "text-purple", 3000);
+      setItem("name", name);
+      setItem("photo", photo);
       setTimeout(() => {
         setUser("");
       }, 3000);
